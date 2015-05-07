@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		ul{
+			width:1000px;
+		}
+		li{
+			padding:80px 20px;
+			width: 200px;
+			list-style: none;
+			float: left;
+			border:1px solid blue;
+			text-align: center;
+			text-indent: -9999px;
+		}
+		.flipped{
+			text-indent: 0;
+		}
+	</style>
+	<script type="text/javascript">
+	var selectedPiece,
+		totalMatches=4,
+		matchesFound=0;
+	
+	function checkPiece(evt){
+		var currentPiece;
+		evt=evt||window.event;
+		var target=evt.target||evt.srcElement;
+		currentPiece=target;
+
+		if(currentPiece.className=='flipped')
+			return ;
+		currentPiece.className='flipped';
+		if(!selectedPiece)
+		{
+			selectedPiece=currentPiece;
+			return;
+		}
+		if(selectedPiece.innerHTML==currentPiece.innerHTML)
+		{
+			matchesFound++;
+			if(matchesFound==totalMatches){
+				alert("you found tem all! GG!");
+			}else{
+				alert("good match");
+			}
+		}else{
+			alert("sorry ,not a match!");
+			currentPiece.className="";
+			selectedPiece.className="";
+		}
+		selectedPiece=null;
+	}
+	window.onload=function(){
+		var el=document.getElementById("pieces");
+		el.onclick=checkPiece;
+	}
+	</script>
+</head>
+
+<body>
+	<ul id="pieces">
+		<li>骨灰</li>
+		<li>草</li>
+		<li>草</li>
+		<li>骨灰</li>
+		<li>miss</li>
+		<li>white</li>
+		<li>white</li>
+		<li>miss</li>
+	</ul>	
+</body>
+</html>
